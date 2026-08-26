@@ -32,8 +32,6 @@ simulation, Live trading, Venue Adapters, and infrastructure around you change.
 > In-repo pointers: [`core/docs/index.md`](docs/index.md) and
 > [`core/docs/code-map/core-pipeline-map.md`](docs/code-map/core-pipeline-map.md).
 
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
-
 ## Why it is relevant
 
 Trading systems often drift when Backtesting logic, Live logic, policy limits, and
@@ -66,8 +64,6 @@ decision engine itself. Wall-clock scheduling, Venue behavior, Venue Adapter
 mapping, latency, liquidity, market-data quality, and infrastructure failure modes
 stay in the Runtime, Venue Adapter, and Venue—not in Core.
 
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
-
 ## What it gives you
 
 | What you get | Why it matters |
@@ -90,8 +86,6 @@ behavior, Runtime scheduling, and infrastructure failure modes can still
 differ and must be modeled outside Core. What Core removes is a major
 source of mismatch—duplicating and subtly diverging Strategy/Risk Engine/
 Execution Control itself.
-
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
 
 ## How it fits into a full system
 
@@ -116,8 +110,6 @@ Kubernetes, credentials, and operations-related). What stays stable is the Core
 pipeline and contracts; what varies by design is Runtime choice, Venue Adapter,
 Venue, and deployment.
 
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
-
 ## When to use `tradingchassis_core`
 
 - Building an internal trading system where Backtesting and Live should share decision semantics.
@@ -132,8 +124,6 @@ Venue, and deployment.
 - You want a complete Venue connector or turnkey Live implementation.
 - You expect this package to ship a full Kubernetes Runtime, deployment manifests, or production operations.
 - You expect Core to execute orders, talk to Venues, replace Venue Adapters, or perform external dispatch.
-
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
 
 ## Quickstart
 
@@ -177,8 +167,6 @@ print(result.generated_intents, result.dispatchable_intents)
 See `examples/core_step_quickstart.py` for a full runnable walkthrough and
 [`docs/how-to/use-policy-evaluator.md`](docs/how-to/use-policy-evaluator.md) for policy extension points.
 Planned U3 cleanup candidates: [`docs/roadmap/dead-code-cleanup-candidates.md`](docs/roadmap/dead-code-cleanup-candidates.md).
-
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
 
 ## Full pipeline
 
@@ -230,8 +218,6 @@ Current Market Event baseline contract:
 - Runtime may normalize venue data into canonical Events, but Core accepts only
   the documented canonical reduction contract.
 
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
-
 ## Internally wired vs externally supplied
 
 The clean Core pipeline is always the same shape; some pieces run inside Core
@@ -267,8 +253,6 @@ built-in Risk Engine policy behavior. See `examples/core_step_quickstart.py` (mi
 
 Strategy code reads State and returns Intents. It must not mutate Core-owned
 State, Queue/inflight substate, or reducer-managed data.
-
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
 
 ## Input / Core / Output / Not Owned By Core
 
@@ -331,8 +315,6 @@ canonical entries, and Core reduces them in that order before making one decisio
 - Core reduces all wakeup entries in order, evaluates Strategy once on the final State,
   then runs Policy Admission and Execution Control once.
 - Runtime dispatches after the returned `CoreStepResult`.
-
-<img src="https://img.spacergif.org/spacer.gif" width="1" height="32"/>
 
 ## Developer Commands
 
